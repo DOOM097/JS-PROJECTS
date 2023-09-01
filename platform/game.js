@@ -76,25 +76,13 @@ let game = {
         }
     },
 
-    //     let onImageLoad = () => {
-    //         ++loaded;
-    //         if (loaded >= required) {
-    //             callback();
-    //         }
-    //     };
-    //     for (let key in this.sprites) {
-    //         this.sprites[key] = new Image();
-    //         this.sprites[key].src = "/img" + key + ".png";
-    //         this.sprites[key].addEventListener("load", onImageLoad);
-    //     }
-    // },
     create() {
         for (let row = 0; row < this.rows; row++) {
             for (let col = 0; col < this.cols; col++) {
                 this.blocks.push({
                     active: true,
-                    width: 60,
-                    height: 20,
+                    width: 59,
+                    height: 13,
                     x: 64 * col + 65,
                     y: 24 * row + 35
                 });
