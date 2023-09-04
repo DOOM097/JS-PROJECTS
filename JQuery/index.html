@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Drum Kit</title>
+    <style>
+        /* Общие стили для контейнера и кнопок */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('bg.jpg'); /* Задний фон изображения */
+            background-size: cover; /* Растягиваем изображение на весь экран */
+            background-repeat: no-repeat; /* Запрещаем повторение фона */
+        }
+
+        .keys {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .key {
+            display: inline-block;
+            border: 1px solid #333;
+            margin: 10px;
+            padding: 10px;
+            font-size: 24px;
+            text-align: center;
+            cursor: pointer;
+            width: 80px; /* Ширина кнопок */
+            height: 80px; /* Высота кнопок */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white; /* Цвет кнопок */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Тень кнопок */
+        }
+
+        .playing {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="keys" tabindex="1">
+        <div data-key="65" class="key"> 
+            <kbd>A</kbd>
+            <span class="sound">hihat</span>
+        </div>
+        <div data-key="83" class="key"> 
+            <kbd>S</kbd>
+            <span class="sound">hihat</span>
+        </div>
+        <div data-key="68" class="key"> 
+            <kbd>D</kbd> 
+            <span class="sound">kick</span> 
+        </div>
+        <div data-key="70" class="key"> 
+            <kbd>F</kbd> 
+            <span class="sound">openhat</span>
+        </div>
+        <div data-key="71" class="key">
+            <kbd>G</kbd> 
+            <span class="sound">boom</span>
+        </div>
+        <div data-key="72" class="key">
+            <kbd>H</kbd> 
+            <span class="sound">ride</span> 
+        </div>
+        <div data-key="74" class="key">
+            <kbd>J</kbd> 
+            <span class="sound">snare</span> 
+        </div>
+        <div data-key="75" class="key">
+            <kbd>K</kbd> 
+            <span class="sound">tom</span> 
+        </div>
+        <div data-key="76" class="key"> 
+            <kbd>L</kbd> 
+            <span class="sound">tink</span> 
+        </div>
+    </div>
+
+    <audio data-key="65" src="sounds/clap.wav"></audio>
+    <audio data-key="83" src="sounds/hihat.wav"></audio>
+    <audio data-key="68" src="sounds/kick.wav"></audio>
+    <audio data-key="70" src="sounds/openhat.wav"></audio>
+    <audio data-key="71" src="sounds/boom.wav"></audio>
+    <audio data-key="72" src="sounds/ride.wav"></audio>
+    <audio data-key="74" src="sounds/snare.wav"></audio>
+    <audio data-key="75" src="sounds/tom.wav"></audio>
+    <audio data-key="76" src="sounds/tink.wav"></audio>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Отлавливаем события "Нажатие на клавишу"
+            $(document).keydown(function(event) {
+                // Создаем переменную, в которую помещаем div с подходящим data-key
+                var key = $('.key[data-key=' + event.which + ']');
+                // Находим на странице тег audio с нужным data-key и помещаем также в переменную для удобства
+                var audio = $('audio[data-key=' + event.which + ']')[0];
+                // Присваиваем активный класс к клавише, чтобы подсветить её
+                key.addClass('playing');
+                // Проверяем существует ли audio тег с таким data-key
+                if (!audio) return;
+                // Воспроизводим звук
+                audio.play();
+                // Сбрасываем таймер звуковой дорожки снова на 0
+                audio.currentTime = 0;
+            });
+
+            // Отслеживаем событие, когда пользователь отпускает кнопку
+            $(document).keyup(function(event) {
+                // Создаем переменную с нужным data-key
+                var key = $('.key[data-key=' + event.which + ']');
+                // Убираем класс, который подсвечивает кнопку
+                key.removeClass('playing');
+            });
+        });
+    </script>
+</body>
+</html>
