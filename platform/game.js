@@ -23,10 +23,12 @@ let game = {
     sounds: {
         bump: null,
     },
+    score: 0, // Добавили переменную score
     init() {
         this.ctx = document.getElementById("mycanvas").getContext("2d")
         this.setTextFont();
         this.setEvents();
+        this.score = 0; // Инициализировали счет
     },
     setTextFont() {
         this.ctx.font = "20px Arial";
@@ -130,14 +132,14 @@ let game = {
             });
         }
     },
-    render() { //
+    render() {
         this.ctx.clearRect(0, 0, this.width, this.height);
         this.ctx.drawImage(this.sprites.background, 0, 0);
         this.ctx.drawImage(this.sprites.ball, this.ball.frame * this.ball.width, 0,
-            this.ball.width, this.ball.height, this.ball.x, this.ball.y, this.ball.width, this.ball.height);
+        this.ball.width, this.ball.height, this.ball.x, this.ball.y, this.ball.width, this.ball.height);
         this.ctx.drawImage(this.sprites.platform, this.platform.x, this.platform.y);
         this.renderBlocks();
-        this.ctx.fillText("Score: " + this.score, 15, 20);
+        this.ctx.fillText("Score: " + this.score, 15, 20); // Отображаем счет
     },
 
     renderBlocks() {
@@ -196,7 +198,7 @@ game.ball = {
 
     },
 
-    collide(element) { //
+    collide(element) {
         let x = this.x + this.dx;
         let y = this.y + this.dy;
 
@@ -310,4 +312,4 @@ game.platform = {
 
 window.addEventListener("load", () => { 
     game.start();
-})
+});
