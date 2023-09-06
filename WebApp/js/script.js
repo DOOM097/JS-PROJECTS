@@ -266,10 +266,10 @@ window.addEventListener('DOMContentLoaded', function(){
 
         function showThanksModal(message) {
             const prevModalDialog = document.querySelector('.modal__dialog');
-
+        
             prevModalDialog.classList.add('hide');
             openModal();
-
+        
             const thanksModal = document.createElement('div');
             thanksModal.classList.add('modal__dialog');
             thanksModal.innerHTML = `
@@ -284,9 +284,11 @@ window.addEventListener('DOMContentLoaded', function(){
                 prevModalDialog.classList.add('show');
                 prevModalDialog.classList.remove('hide');
                 closeModal();
+                // Reset the form
+                document.getElementById('contactForm').reset();
             }, 4000);
         }
-
+        
     }
 
 });
