@@ -44,29 +44,42 @@ window.addEventListener('DOMContentLoaded', function(){
 
     const deadline = '2023-12-11';
 
-    function getTimeRemaining(endtime) {
-        const t = Date.parse(endtime) - Date.parse(new Date()),
-            days = Math.floor( (t/(1000*60*60*24)) ),
-            seconds = Math.floor( (t/1000) % 60 ),
-            minutes = Math.floor( (t/1000/60) %60 ),
-            hours = Math.floor( (t/(1000*60*60) % 24) );
+function getTimeRemaining(endtime) {
+    const currentTime = new Date();
+    const targetTime = new Date(endtime);
 
-            return {
-                'total' : t,
-                'days' : days,
-                'hours' : hours,
-                'minutes' : minutes,
-                'seconds' : seconds
-            };
+
+    const isPastDeadline = currentTime > targetTime;
+
+    let t;
+    if (isPastDeadline) {
+        t = 0; 
+    } else {
+        t = targetTime - currentTime;
     }
 
-    function getZero(num) {
-        if (num >= 0 && num < 10) {
-            return '0' + num;
-        } else {
-            return num;
-        }
+    const days = Math.floor(t / (1000 * 60 * 60 * 24));
+    const seconds = Math.floor((t / 1000) % 60);
+    const minutes = Math.floor((t / 1000 / 60) % 60);
+    const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+
+    return {
+        'total': t,
+        'days': isPastDeadline ? '0' : getZero(days),
+        'hours': isPastDeadline ? '0' : getZero(hours),
+        'minutes': isPastDeadline ? '0' : getZero(minutes),
+        'seconds': isPastDeadline ? '0' : getZero(seconds)
+    };
+}
+
+function getZero(num) {
+    if (num >= 0 && num < 10) {
+        return '0' + num;
+    } else {
+        return num.toString();
     }
+}
+
 
     function setClock(selector, endtime) {
 
@@ -124,10 +137,11 @@ window.addEventListener('DOMContentLoaded', function(){
     });
 
     document.addEventListener('keydown', (e) => {
-        if (e.code === "Escape" && modal.classList.contains('show')) {
+        if ((e.code === "Escape" || e.key === "z" || e.key === "Z"|| e.key === "я"|| e.key === "") && modal.classList.contains('show')) {
             closeModal();
         }
     });
+    
 
     const modalTimerId = setTimeout(openModal, 300000);
     // Изменил значение, чтобы не отвлекало
@@ -193,27 +207,39 @@ window.addEventListener('DOMContentLoaded', function(){
         9,
         ".menu .container"
     ).render();
-
+ 
     new MenuCard(
         "img/tabs/post.jpg",
         "post",
         'Меню "Постное"',
-        'Меню "Постное" - это тщательный подбор ингредиентов: полсное отсутствие продуктов животного происхождения,'+
-        ' молоко из миндалия, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных '+
+        'Меню "Постное" - это тщательный подбор ингредиентов:  животного происхождения,'+
+        ' молоко из миндалия, правильное количество белков за счет тофу и импортных '+
         'вегатарианских стейков.',
         14,
         ".menu .container"
     ).render();
 
+    
     new MenuCard(
         "img/tabs/elite.jpg",
         "elite",
         'Меню "Премиум"',
-        'В меню "премиум" мы используем не только красивый дизайн упаковки, но и в качественное исполнение блюд. '+
+        'В меню "премиум" мы используем и ц кц кц не только красивый дизайн упаковки, но и в качественное исполнение блюд. '+
         ' Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан',
         21,
         ".menu .container"
     ).render();
+    
+    new MenuCard(
+        "img/tabs/elite.jpg",
+        "elite",
+        'Меню "вкусное"',
+        'В меню "вкусное" мы используем не и кц ктолько красивый дизайн упаковки, но и в качественное исполнение блюд. '+
+        ' Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан',
+        21,
+        ".menu .container"
+    ).render();
+
 
     // Forms
 
