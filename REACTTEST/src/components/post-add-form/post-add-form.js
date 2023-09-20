@@ -3,19 +3,21 @@ import React, {Component} from 'react';
 import './post-add-form.css'
 
 export default class PostAddForm extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             text: ''
         };
-        this.onValueChange= this.onValueChange.bind(this);
+        this.onValueChange = this.onValueChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-    onValueChange(e){
+    
+    onValueChange(e) {
         this.setState({
             text: e.target.value
         });
     }
+
     onSubmit(e) {
         e.preventDefault();
         this.props.onAdd(this.state.text);
@@ -23,24 +25,27 @@ export default class PostAddForm extends Component {
             text: ''
         });
     }
+
     render() {
         return (
             <form
-                className="bottom-panel d-flex"
-                onSubmit={this.onSubmit}>
+                className = 'bottom-panel d-flex'
+                onSubmit = {this.onSubmit}>
+
                 <input
-                    type="text"
-                    placeholder='О чем вы думаете сейчас?'
-                    className='form-control new-post-label'
-                    onChange={this.onValueChange}
-                    value={this.state.text}
-                    />
-                    <button
-                        type='submit'
-                        className='btn btn-outline-secondary'>
-                            Добавить
-                        </button>
-                </form>
+                    type = 'text'
+                    placeholder = 'О чем вы сейчас думаете?'
+                    className = 'form-control new-post-label'
+                    onChange = {this.onValueChange}
+                    value = {this.state.text}
+                />
+                <button
+                    type = 'submit'
+                    className = 'btn btn-outline-secondary'>
+                    Добавить
+                </button>
+
+            </form>         
         )
     }
 }
