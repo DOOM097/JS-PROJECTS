@@ -6,20 +6,21 @@ import gotService from '../../services/gotService';
 import RowBlock from '../rowBlock';
 import { Field } from '../itemDetails/itemDetails';
 
-export default class HousesPage extends Component{
+
+export default class CharapterPage extends Component{
     gotService = new gotService();
 
     state={
-        selectedHouse:null,
+        selectedChar:null;
         error:false
     }
 
     onItemSelected=(id)=>{
         this.setState({
-            selectedHouse:id
+            selectedChar:id
         })
     }
-
+    
     componentDidCatch(){
         this.setState({
             error:true
@@ -33,37 +34,25 @@ export default class HousesPage extends Component{
 
         const itemList=(
             <ItemList
-            onItemSelected={this.onItemSelected}
-            getData={this.gotService.getAllHouses}
-            renderItem={({name})=>name}/>
-        )
-
-
-        const itemDetails=(
-            <ItemDetails
-            itemId={this.state.selectedHouse}
-            getData={this.gotService.getAllHouses}
-            renderItem={({name})=>name}/>
+                onItemSelected={this.onItemSelected}
+                getData={this.gotService.getAllChatacter}
+                renderItem={({name, gender})=>`${name}(${gender})`}/>
         )
 
         const itemDetails=(
             <ItemDetails
-            itemId={this.state.selectedHouse}
-            getData={this.gotService.getHouse}>
-                <Field field='region' label='Region'/>
-                <Field field='words' label='words'/>
-                <Field field='titles' label='titles'/>
-                <Field field='ancestralWeapons' label='Ancestral Weapons'/>
+            itemDetails={this.state.selectedChar}
+            getData={this.gotService.getAllChatacter}>
+                <Field field='gender' label='Gender'/>
+                <Field field='born' label='Born'/>
+                <Field field='died' label='Died'/>
+                <Field field='culture' label='Culture'/>
             </ItemDetails>
         )
-
 
         return(
             <RowBlock left={itemList} right={itemDetails}/>
         )
     }
-
-
-
 
 }
