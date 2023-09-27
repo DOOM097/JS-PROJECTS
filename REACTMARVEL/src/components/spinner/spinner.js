@@ -3,9 +3,9 @@ import './spinner.css';
 
 const Spinner = () => {
     return (
-        <div className="lds-css ng-scope">
-            
-        </div>
+        <div class="loadingio-spinner-spin-fxjrnusagi9"><div class="ldio-8fmbrc8jxnh">
+<div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+</div></div>
     )
 }
 

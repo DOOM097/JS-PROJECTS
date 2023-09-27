@@ -1,5 +1,5 @@
 
-export default class gotService {
+export default class GotService {
     constructor() {
         this._apiBase = 'https://www.anapioficeandfire.com/api';
     }
@@ -47,7 +47,7 @@ export default class gotService {
         if (data) {
             return data
         } else {
-            return 'No data :0'
+            return 'No data :('
         }
     }
 

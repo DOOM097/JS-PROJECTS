@@ -11,7 +11,7 @@ export default class CharapterPage extends Component{
     gotService = new gotService();
 
     state={
-        selectedChar:null;
+        selectedChar:null,
         error:false
     }
 

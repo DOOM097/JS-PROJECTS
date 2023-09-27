@@ -39,12 +39,7 @@ export default class HousesPage extends Component{
         )
 
 
-        const itemDetails=(
-            <ItemDetails
-            itemId={this.state.selectedHouse}
-            getData={this.gotService.getAllHouses}
-            renderItem={({name})=>name}/>
-        )
+
 
         const itemDetails=(
             <ItemDetails
