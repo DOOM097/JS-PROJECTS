@@ -1,0 +1,49 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Первый герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "fire"
+    },
+    {
+      "id": 3,
+      "name": "Морской герой",
+      "description": "Как аквамен, но не из DC",
+      "element": "water"
+    },
+    {
+      "id": "b353e0ff-dfd1-44f5-9db7-97d6f5e63e14",
+      "name": "Vasya",
+      "description": "No no no",
+      "element": "wind"
+    }
+  ],
+  "filters": [
+    {
+      "name": "all",
+      "label": "Все",
+      "className": "btn-outline-dark"
+    },
+    {
+      "name": "fire",
+      "label": "Огонь",
+      "className": "btn-danger"
+    },
+    {
+      "name": "water",
+      "label": "Вода",
+      "className": "btn-primary"
+    },
+    {
+      "name": "wind",
+      "label": "Ветер",
+      "className": "btn-success"
+    },
+    {
+      "name": "earth",
+      "label": "Земля",
+      "className": "btn-secondary"
+    }
+  ]
+}
